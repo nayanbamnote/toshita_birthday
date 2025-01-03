@@ -1,23 +1,95 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { Video } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import { useRouter, usePathname } from 'next/navigation'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const router = useRouter()
+  const pathname = usePathname()
+  const [pendingScroll, setPendingScroll] = useState<string | null>(null)
+  const [isNavigating, setIsNavigating] = useState(false)
+
+  useEffect(() => {
+    // Reset navigation state when pathname changes
+    setIsNavigating(false)
+
+    // Only attempt to scroll if we were navigating and have a pending scroll target
+    if (!isNavigating && pendingScroll && pathname === '/') {
+      const timer = setTimeout(() => {
+        try {
+          const element = document.querySelector(pendingScroll)
+          if (element) {
+            // Force scroll to top first
+            window.scrollTo(0, 0)
+            
+            // Then scroll to element
+            const headerOffset = 80
+            const elementPosition = element.getBoundingClientRect().top
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+            window.scrollTo({
+              top: Math.max(0, offsetPosition),
+              behavior: 'smooth'
+            })
+          }
+        } catch (error) {
+          console.error('Scroll error:', error)
+        } finally {
+          setPendingScroll(null)
+        }
+      }, 100) // Short delay to ensure DOM is ready
+
+      return () => clearTimeout(timer)
+    }
+  }, [pathname, pendingScroll, isNavigating])
 
   const navItems = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Gallery', href: '#gallery' },
     { name: 'Messages', href: '#messages' },
+    { 
+      name: 'Special Messages', 
+      href: '/videomessages',
+      isSpecial: true,
+      icon: <Video className="w-4 h-4" />
+    },
   ]
 
-  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const element = document.querySelector(href);
-    element?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const scrollToElement = (href: string) => {
+    const element = document.querySelector(href)
+    if (element) {
+      const headerOffset = 80
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: 'smooth'
+      })
+    }
+  }
+
+  const handleNavigation = async (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault()
+    setIsOpen(false)  // Close mobile menu
+
+    if (href.startsWith('#')) {
+      if (pathname !== '/') {
+        setIsNavigating(true)
+        setPendingScroll(href)
+        router.push('/')
+      } else {
+        scrollToElement(href)
+      }
+    } else {
+      router.push(href)
+    }
+  }
 
   return (
     <nav className="fixed top-0 w-full z-[9999] bg-black/20 backdrop-blur-sm">
@@ -30,9 +102,15 @@ export default function Navbar() {
                 <a
                   key={item.name}
                   href={item.href}
-                  onClick={(e) => handleScroll(e, item.href)}
-                  className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                  onClick={(e) => handleNavigation(e, item.href)}
+                  className={cn(
+                    "px-3 py-2 rounded-md text-sm font-medium transition-all duration-300",
+                    item.isSpecial 
+                      ? "bg-white/10 hover:bg-white/20 text-white flex items-center gap-2 hover:scale-105" 
+                      : "text-gray-300 hover:text-white"
+                  )}
                 >
+                  {item.icon && item.icon}
                   {item.name}
                 </a>
               ))}
@@ -73,10 +151,7 @@ export default function Navbar() {
               key={item.name}
               href={item.href}
               className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              onClick={(e) => {
-                handleScroll(e, item.href);
-                setIsOpen(false);
-              }}
+              onClick={(e) => handleNavigation(e, item.href)}
             >
               {item.name}
             </a>
@@ -85,4 +160,4 @@ export default function Navbar() {
       </motion.div>
     </nav>
   )
-} 
+}
