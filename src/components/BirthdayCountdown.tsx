@@ -7,7 +7,7 @@ export default function BirthdayCountdown() {
 
   useEffect(() => {
     const today = new Date()
-    const birthday = new Date(today.getFullYear(), 7, 15) // Assuming Toshita's birthday is on August 15
+    const birthday = new Date(today.getFullYear(), 7, 15) // Assuming test's birthday is on August 15
     if (today > birthday) {
       birthday.setFullYear(birthday.getFullYear() + 1)
     }
@@ -23,7 +23,7 @@ export default function BirthdayCountdown() {
         <div className="w-48 h-48 rounded-full bg-gray-800 flex items-center justify-center mx-auto">
           <div className="text-4xl font-bold text-white">{daysUntilBirthday}</div>
         </div>
-        <p className="text-white mt-4">Days until Toshita's birthday</p>
+        <p className="text-white mt-4">Days until test's birthday</p>
       </div>
     </section>
   )

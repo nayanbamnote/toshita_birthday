@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <main className="relative">
       <StarryBackground />
-      <div className="bg-gradient-to-b from-transparent via-blue-900/30 to-black/50 fixed inset-0 pointer-events-none"></div>
+      <div className=" bg-black/10 fixed inset-0 pointer-events-none"></div>
       <LandingPage />
       <AboutSection />
       <GallerySection />

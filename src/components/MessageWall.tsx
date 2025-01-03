@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 
 const initialMessages = [
-  "Happy birthday, Toshita! You're amazing!",
+  "Happy birthday, test! You're amazing!",
   "Wishing you a year full of starry nights and magical moments!",
   "May your dreams be as vast as the night sky!",
 ]

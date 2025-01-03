@@ -4,8 +4,8 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: "Toshita's Starry Night",
-  description: 'A magical journey through Toshita\'s world',
+  title: "test's Starry Night",
+  description: 'A magical journey through test\'s world',
 }
 
 export default function RootLayout({
@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-black min-h-screen`}>
+      <body className={`${inter.className} bg-black min-h-screen dark`}>
         {children}
       </body>
     </html>
