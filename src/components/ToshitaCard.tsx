@@ -1,6 +1,6 @@
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
-import { div } from "framer-motion/client";
- 
+import { SectionWrapper } from "@/components/ui/section-wrapper";
+
 export function ToshitaCard() {
   const testimonials = [
     {
@@ -44,10 +44,13 @@ export function ToshitaCard() {
       src: "/toshita.jpg",
     },
   ];
+
   return (
-    <div className="z-[6]">
+    <SectionWrapper id="about" title="Memories">
+      <div className="z-[6]">
         <AnimatedTestimonials testimonials={testimonials} />
-    </div>
+      </div>
+    </SectionWrapper>
   );
 }
 
