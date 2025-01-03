@@ -118,13 +118,13 @@ const floatingButtons = [
 
 export default function FloatingPartyButtons() {
   return (
-    <div className="fixed inset-0 pointer-events-auto z-30">
+    <div className="fixed inset-0 pointer-events-none z-[5]">
       {typeof window !== 'undefined' && floatingButtons.map((button, i) => {
         const randomX = Math.random() * window.innerWidth * 0.8;
         const randomY = Math.random() * window.innerHeight * 0.8;
         const avoidCenter = (pos: number, size: number) => {
           const center = size / 2;
-          const buffer = size * 0.3; // 30% of screen size as buffer
+          const buffer = size * 0.3;
           return pos > center - buffer && pos < center + buffer 
             ? pos + (pos < center ? -buffer : buffer)
             : pos;
@@ -133,7 +133,7 @@ export default function FloatingPartyButtons() {
         return (
           <motion.div
             key={i}
-            className="absolute"
+            className="absolute pointer-events-auto"
             initial={{
               x: randomX,
               y: randomY,

@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 @layer base {
   :root {
     --background: 
@@ -146,6 +150,21 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@layer utilities {
+  .animate-twinkle {
+    animation: twinkle 200s linear infinite;
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
   }
 }
 

@@ -1,24 +1,20 @@
-import AboutSection from "@/components/AboutSection";
-import BirthdayCountdown from "@/components/BirthdayCountdown";
-import FavoriteThings from "@/components/FavoriteThings";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+import HeroSection from "@/components/LandingPage";
+import ToshitaCard from "@/components/ToshitaCard";
 import GallerySection from "@/components/GallerySection";
-import InteractiveNightSky from "@/components/InteractiveNightSky";
-import LandingPage from "@/components/LandingPage";
 import MessageWall from "@/components/MessageWall";
+import Footer from "@/components/Footer";
 import StarryBackground from "@/components/StarryBackground";
 
 export default function Home() {
   return (
     <main className="relative">
       <StarryBackground />
-      <div className=" bg-black/10 fixed inset-0 pointer-events-none"></div>
-      <LandingPage />
-      <AboutSection />
+      <div className="bg-black/10 fixed inset-0 pointer-events-none"></div>
+      <Navbar />
+      <HeroSection />
+      <ToshitaCard />
       <GallerySection />
-      <InteractiveNightSky />
-      <FavoriteThings />
-      <BirthdayCountdown />
       <MessageWall />
       <Footer />
     </main>
