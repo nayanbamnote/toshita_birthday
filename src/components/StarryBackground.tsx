@@ -42,7 +42,7 @@ export default function StarryBackground() {
         fps_limit: isMobile ? 30 : 60, // Lower FPS on mobile
         particles: {
           number: {
-            value: isMobile ? 20 : 100, // Further reduce particles on mobile
+            value: isMobile ? 50 : 100, // Further reduce particles on mobile
             density: {
               enable: true,
               value_area: isMobile ? 800 : 800, // Keep area consistent

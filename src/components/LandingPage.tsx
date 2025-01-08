@@ -163,7 +163,7 @@ export default function LandingPage() {
             }}
           >
             <Sparkles 
-              className={`text-white opacity-50 ${isMobile ? 'w-3 h-3' : 'w-4 h-4'}`} 
+              className={`text-white opacity-50 ${isMobile ? 'w-6 h-6' : 'w-8 h-8'}`} 
             />
           </motion.div>
         ))}
