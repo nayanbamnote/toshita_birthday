@@ -23,12 +23,12 @@ export default function StarryBackground() {
   }, []);
 
   useEffect(() => {
-    // Check for low-end devices (you can adjust these criteria)
-    const isLowEnd = 
-      navigator.hardwareConcurrency <= 4 || 
-      /Android [1-4]/.test(navigator.userAgent);
+    // Only use simple background for very low-end devices
+    const isVeryLowEnd = 
+      navigator.hardwareConcurrency <= 2 || 
+      /Android [1-3]/.test(navigator.userAgent);
     
-    setShouldUseSimpleBg(isLowEnd);
+    setShouldUseSimpleBg(isVeryLowEnd);
   }, []);
 
   const particlesInit = useCallback(async (engine: Engine) => {
@@ -61,13 +61,13 @@ export default function StarryBackground() {
         background: {
           color: "transparent",
         },
-        fps_limit: 60,
+        fps_limit: isMobile ? 30 : 60, // Lower FPS on mobile
         particles: {
           number: {
-            value: isMobile ? 30 : 100, // Reduce particles on mobile
+            value: isMobile ? 20 : 100, // Further reduce particles on mobile
             density: {
               enable: true,
-              value_area: isMobile ? 600 : 800,
+              value_area: isMobile ? 800 : 800, // Keep area consistent
             },
           },
           color: {
@@ -81,57 +81,60 @@ export default function StarryBackground() {
             random: true,
             animation: {
               enable: true,
-              speed: isMobile ? 0.5 : 1, // Slower animation on mobile
+              speed: 0.8, // Consistent animation speed
               minimumValue: 0.1,
               sync: false,
             },
           },
           size: {
-            value: isMobile ? 2 : 3, // Smaller particles on mobile
+            value: isMobile ? 1.5 : 3, // Smaller particles on mobile
             random: true,
             animation: {
               enable: true,
-              speed: isMobile ? 1 : 2, // Slower animation on mobile
+              speed: 1.5, // Consistent animation speed
               minimumValue: 0.3,
               sync: false,
             },
           },
           move: {
             enable: true,
-            speed: isMobile ? 0.3 : 0.5, // Slower movement on mobile
+            speed: 0.4, // Consistent, optimized speed
             direction: "none",
             random: true,
             straight: false,
             outModes: {
-              default: "out",
+              default: "bounce", // Change to bounce to keep particles in view
             },
             attract: {
-              enable: isMobile ? false : true, // Disable attraction on mobile
-              rotateX: 600,
-              rotateY: 1200,
+              enable: true,
+              rotateX: 300, // Reduced rotation values
+              rotateY: 600,
             },
           },
           interactivity: {
-            detectsOn: "window",
+            detectsOn: "canvas", // Change to canvas for better performance
             events: {
               onHover: {
-                enable: !isMobile, // Disable hover effects on mobile
-                mode: "grab",
+                enable: true,
+                mode: "bubble", // Change to bubble for lighter effect
               },
+              resize: true,
             },
             modes: {
-              grab: {
-                distance: 150,
-                links: {
-                  opacity: 0.3,
-                },
+              bubble: {
+                distance: 100,
+                size: 4,
+                duration: 0.3,
+                opacity: 0.8,
               },
             },
           },
         },
-        retina_detect: true, // Optimize for retina displays
-        motion: {
-          disable: isMobile, // Disable motion on mobile
+        retina_detect: true,
+        smooth: true, // Enable smooth animations
+        detectRetina: true,
+        performance: {
+          maxParticles: isMobile ? 20 : 100,
         },
       }}
       loaded={particlesLoaded}

@@ -2,6 +2,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import { Loader } from '@/components/ui/loader'
 import { Suspense } from 'react'
+import { Toaster } from 'sonner'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,6 +22,7 @@ export default function RootLayout({
         <Suspense fallback={<Loader />}>
           {children}
         </Suspense>
+        <Toaster position="top-center" theme="dark" />
       </body>
     </html>
   )
