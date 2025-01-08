@@ -8,7 +8,6 @@ import { loadSlim } from "tsparticles-slim";
 export default function StarryBackground() {
   const [isMobile, setIsMobile] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [shouldUseSimpleBg, setShouldUseSimpleBg] = useState(false);
 
   // Detect mobile devices
   useEffect(() => {
@@ -22,15 +21,6 @@ export default function StarryBackground() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  useEffect(() => {
-    // Only use simple background for very low-end devices
-    const isVeryLowEnd = 
-      navigator.hardwareConcurrency <= 2 || 
-      /Android [1-3]/.test(navigator.userAgent);
-    
-    setShouldUseSimpleBg(isVeryLowEnd);
-  }, []);
-
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadSlim(engine);
   }, []);
@@ -39,18 +29,6 @@ export default function StarryBackground() {
     setIsLoaded(true);
     return Promise.resolve();
   }, []);
-
-  if (shouldUseSimpleBg) {
-    return (
-      <div 
-        className="fixed inset-0 -z-10 pointer-events-none bg-gradient-to-b from-black via-purple-900/20 to-black"
-        style={{
-          backgroundImage: `radial-gradient(white 1px, transparent 1px)`,
-          backgroundSize: '50px 50px'
-        }}
-      />
-    );
-  }
 
   return (
     <Particles
