@@ -1,8 +1,8 @@
-import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
+import { AnimatedToshitaimonials } from "@/components/ui/animated-testimonials";
 import { SectionWrapper } from "@/components/ui/section-wrapper";
 
 export function ToshitaCard() {
-  const testimonials = [
+  const Toshitaimonials = [
     {
       id: 1,
       quote:
@@ -48,7 +48,7 @@ export function ToshitaCard() {
   return (
     <SectionWrapper id="about" title="Memories">
       <div className="z-[6]">
-        <AnimatedTestimonials testimonials={testimonials} />
+        <AnimatedToshitaimonials Toshitaimonials={Toshitaimonials} />
       </div>
     </SectionWrapper>
   );

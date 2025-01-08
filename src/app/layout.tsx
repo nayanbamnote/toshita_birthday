@@ -6,8 +6,8 @@ import { Suspense } from 'react'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: "test's Starry Night",
-  description: 'A magical journey through test\'s world',
+  title: "Toshita's Starry Night",
+  description: 'A magical journey through Toshita\'s world',
 }
 
 export default function RootLayout({

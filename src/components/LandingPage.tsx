@@ -5,7 +5,6 @@ import confetti from 'canvas-confetti';
 import { Sparkles, Gift } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import FloatingPartyButtons from './FloatingPartyButtons';
-import { TextGenerateEffect } from './ui/text-generate-effect';
 import { SectionWrapper } from '@/components/ui/section-wrapper';
 
 

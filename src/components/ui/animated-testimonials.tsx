@@ -5,28 +5,28 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-type Testimonial = {
+type Toshitaimonial = {
   id: number;
   quote: string;
   name: string;
   designation: string;
   src: string;
 };
-export const AnimatedTestimonials = ({
-  testimonials,
+export const AnimatedToshitaimonials = ({
+  Toshitaimonials,
   autoplay = false,
 }: {
-  testimonials: Testimonial[];
+  Toshitaimonials: Toshitaimonial[];
   autoplay?: boolean;
 }) => {
   const [active, setActive] = useState(0);
 
   const handleNext = () => {
-    setActive((prev) => (prev + 1) % testimonials.length);
+    setActive((prev) => (prev + 1) % Toshitaimonials.length);
   };
 
   const handlePrev = () => {
-    setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setActive((prev) => (prev - 1 + Toshitaimonials.length) % Toshitaimonials.length);
   };
 
   const isActive = (index: number) => {
@@ -50,9 +50,9 @@ export const AnimatedTestimonials = ({
         <div>
           <div className="relative h-64 sm:h-72 md:h-80 w-full">
             <AnimatePresence>
-              {testimonials.map((testimonial, index) => (
+              {Toshitaimonials.map((Toshitaimonial, index) => (
                 <motion.div
-                  key={`${index}-${testimonial.name}`}
+                  key={`${index}-${Toshitaimonial.name}`}
                   initial={{
                     opacity: 0,
                     scale: 0.9,
@@ -66,7 +66,7 @@ export const AnimatedTestimonials = ({
                     rotate: isActive(index) ? 0 : randomRotateY(index),
                     zIndex: isActive(index)
                       ? 999
-                      : testimonials.length + 2 - index,
+                      : Toshitaimonials.length + 2 - index,
                     y: isActive(index) ? [0, -80, 0] : 0,
                   }}
                   exit={{
@@ -82,8 +82,8 @@ export const AnimatedTestimonials = ({
                   className="absolute inset-0 origin-bottom"
                 >
                   <Image
-                    src={testimonial.src}
-                    alt={testimonial.name}
+                    src={Toshitaimonial.src}
+                    alt={Toshitaimonial.name}
                     width={500}
                     height={500}
                     draggable={false}
@@ -115,13 +115,13 @@ export const AnimatedTestimonials = ({
             }}
           >
             <h3 className="text-xl md:text-2xl font-bold dark:text-white text-black">
-              {testimonials[active].name}
+              {Toshitaimonials[active].name}
             </h3>
             <p className="text-xs md:text-sm text-gray-500 dark:text-neutral-500">
-              {testimonials[active].designation}
+              {Toshitaimonials[active].designation}
             </p>
             <motion.p className="text-base md:text-lg text-gray-500 mt-4 md:mt-8 dark:text-neutral-300">
-              {testimonials[active].quote.split(" ").map((word, index) => (
+              {Toshitaimonials[active].quote.split(" ").map((word, index) => (
                 <motion.span
                   key={index}
                   initial={{

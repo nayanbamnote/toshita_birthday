@@ -4,10 +4,10 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 
 const stars = [
-  { id: 1, x: '20%', y: '30%', fact: 'test loves stargazing' },
+  { id: 1, x: '20%', y: '30%', fact: 'Toshita loves stargazing' },
   { id: 2, x: '50%', y: '20%', fact: 'Her favorite constellation is Orion' },
   { id: 3, x: '80%', y: '40%', fact: 'She dreams of becoming an astronomer' },
-  { id: 4, x: '30%', y: '70%', fact: 'test can name over 50 stars' },
+  { id: 4, x: '30%', y: '70%', fact: 'Toshita can name over 50 stars' },
   { id: 5, x: '70%', y: '60%', fact: 'She has her own telescope' },
 ]
 
