@@ -65,23 +65,87 @@ export default function FloatingPartyButtons() {
   };
 
   const triggerCakeEffect = () => {
-    confetti({
-      particleCount: isMobile ? 20 : 40,
-      spread: isMobile ? 50 : 70,
-      origin: { y: 0.6 },
-      colors: ['FFE400', 'FFBD00', 'E89400'],
+    const defaults = {
+      spread: isMobile ? 280 : 360,
+      ticks: isMobile ? 50 : 70,
+      gravity: 0,
+      decay: 0.95,
+      startVelocity: isMobile ? 20 : 30,
+      shapes: ['star'],
+      colors: ['FFE400', 'FFBD00', 'E89400', 'FFCA6C', 'FDFFB8'],
       disableForReducedMotion: true
-    });
+    };
+
+    function shoot() {
+      confetti({
+        ...defaults,
+        particleCount: isMobile ? 20 : 40,
+        scalar: isMobile ? 0.8 : 1.2,
+        shapes: ['star']
+      });
+
+      confetti({
+        ...defaults,
+        particleCount: isMobile ? 5 : 10,
+        scalar: isMobile ? 0.5 : 0.75,
+        shapes: ['circle']
+      });
+    }
+
+    shoot();
+    if (!isMobile) {
+      setTimeout(shoot, 100);
+      setTimeout(shoot, 200);
+    }
   };
 
   const triggerMusicEffect = () => {
-    confetti({
-      particleCount: isMobile ? 15 : 30,
-      spread: isMobile ? 40 : 60,
-      origin: { y: 0.6 },
-      colors: ['#1DB954', '#1ED760'],
-      disableForReducedMotion: true
-    });
+    if (isMobile) {
+      // Simple burst for mobile
+      confetti({
+        particleCount: 15,
+        spread: 40,
+        origin: { y: 0.6 },
+        colors: ['#1DB954', '#1ED760'],
+        disableForReducedMotion: true
+      });
+      return;
+    }
+
+    // Original effect for desktop
+    const end = Date.now() + 2000;
+    const colors = ['#1DB954', '#1ED760', '#20DF64'];
+
+    (function frame() {
+      confetti({
+        particleCount: 2,
+        angle: 60,
+        spread: 75,
+        origin: { x: 0 },
+        colors: colors,
+        shapes: ['circle'],
+        gravity: 0.8,
+        scalar: 2,
+        drift: 0,
+        ticks: 200
+      });
+      confetti({
+        particleCount: 2,
+        angle: 120,
+        spread: 75,
+        origin: { x: 1 },
+        colors: colors,
+        shapes: ['circle'],
+        gravity: 0.8,
+        scalar: 2,
+        drift: 0,
+        ticks: 200
+      });
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    }());
   };
 
   const floatingButtons = [
