@@ -7,6 +7,13 @@ import { useState, useEffect } from 'react';
 
 export default function FloatingPartyButtons() {
   const [isMobile, setIsMobile] = useState(false);
+  const [positions] = useState(() => {
+    // Pre-calculate random positions to avoid recalculation
+    return Array(3).fill(0).map(() => ({
+      x: Math.random() * 0.8,
+      y: Math.random() * 0.8
+    }));
+  });
 
   useEffect(() => {
     const checkMobile = () => {
@@ -20,25 +27,35 @@ export default function FloatingPartyButtons() {
   }, []);
 
   const triggerConfetti = () => {
-    const end = Date.now() + (isMobile ? 1.5 * 1000 : 3 * 1000);
-    const colors = ['#ff0000', '#ffa500', '#ffff00', '#008000', '#0000ff', '#4b0082', '#ee82ee'];
+    if (isMobile) {
+      // Single burst for mobile
+      confetti({
+        particleCount: 30,
+        spread: 50,
+        origin: { y: 0.6 },
+        disableForReducedMotion: true
+      });
+      return;
+    }
+    
+    // Original effect for desktop
+    const end = Date.now() + 3000;
+    const colors = ['#ff0000', '#ffa500', '#ffff00', '#008000', '#0000ff'];
     
     (function frame() {
       confetti({
-        particleCount: isMobile ? 4 : 7,
+        particleCount: 7,
         angle: 60,
-        spread: isMobile ? 40 : 55,
+        spread: 55,
         origin: { x: 0 },
-        colors: colors,
-        disableForReducedMotion: true
+        colors: colors
       });
       confetti({
-        particleCount: isMobile ? 4 : 7,
+        particleCount: 7,
         angle: 120,
-        spread: isMobile ? 40 : 55,
+        spread: 55,
         origin: { x: 1 },
-        colors: colors,
-        disableForReducedMotion: true
+        colors: colors
       });
     
       if (Date.now() < end) {
@@ -48,76 +65,23 @@ export default function FloatingPartyButtons() {
   };
 
   const triggerCakeEffect = () => {
-    const defaults = {
-      spread: isMobile ? 280 : 360,
-      ticks: isMobile ? 50 : 70,
-      gravity: 0,
-      decay: 0.95,
-      startVelocity: isMobile ? 20 : 30,
-      shapes: ['star'],
-      colors: ['FFE400', 'FFBD00', 'E89400', 'FFCA6C', 'FDFFB8'],
+    confetti({
+      particleCount: isMobile ? 20 : 40,
+      spread: isMobile ? 50 : 70,
+      origin: { y: 0.6 },
+      colors: ['FFE400', 'FFBD00', 'E89400'],
       disableForReducedMotion: true
-    };
-
-    function shoot() {
-      confetti({
-        ...defaults,
-        particleCount: isMobile ? 20 : 40,
-        scalar: isMobile ? 0.8 : 1.2,
-        shapes: ['star']
-      });
-
-      confetti({
-        ...defaults,
-        particleCount: isMobile ? 5 : 10,
-        scalar: isMobile ? 0.5 : 0.75,
-        shapes: ['circle']
-      });
-    }
-
-    shoot();
-    if (!isMobile) {
-      setTimeout(shoot, 100);
-      setTimeout(shoot, 200);
-    }
+    });
   };
 
   const triggerMusicEffect = () => {
-    const end = Date.now() + (isMobile ? 1 * 1000 : 2 * 1000);
-    const colors = ['#1DB954', '#1ED760', '#20DF64'];
-
-    (function frame() {
-      confetti({
-        particleCount: isMobile ? 1 : 2,
-        angle: 60,
-        spread: isMobile ? 60 : 75,
-        origin: { x: 0 },
-        colors: colors,
-        shapes: ['circle'],
-        gravity: 0.8,
-        scalar: isMobile ? 1.5 : 2,
-        drift: 0,
-        ticks: isMobile ? 150 : 200,
-        disableForReducedMotion: true
-      });
-      confetti({
-        particleCount: isMobile ? 1 : 2,
-        angle: 120,
-        spread: isMobile ? 60 : 75,
-        origin: { x: 1 },
-        colors: colors,
-        shapes: ['circle'],
-        gravity: 0.8,
-        scalar: isMobile ? 1.5 : 2,
-        drift: 0,
-        ticks: isMobile ? 150 : 200,
-        disableForReducedMotion: true
-      });
-
-      if (Date.now() < end) {
-        requestAnimationFrame(frame);
-      }
-    }());
+    confetti({
+      particleCount: isMobile ? 15 : 30,
+      spread: isMobile ? 40 : 60,
+      origin: { y: 0.6 },
+      colors: ['#1DB954', '#1ED760'],
+      disableForReducedMotion: true
+    });
   };
 
   const floatingButtons = [
@@ -140,42 +104,42 @@ export default function FloatingPartyButtons() {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[5]">
-      {typeof window !== 'undefined' && floatingButtons.map((button, i) => {
-        const randomX = Math.random() * window.innerWidth * 0.8;
-        const randomY = Math.random() * window.innerHeight * 0.8;
-        const avoidCenter = (pos: number, size: number) => {
-          const center = size / 2;
-          const buffer = size * 0.3;
-          return pos > center - buffer && pos < center + buffer 
-            ? pos + (pos < center ? -buffer : buffer)
-            : pos;
-        };
-
+      {positions.map((pos, i) => {
+        const button = floatingButtons[i];
         return (
           <motion.div
             key={i}
             className="absolute pointer-events-auto"
-            initial={{
-              x: randomX,
-              y: randomY,
+            initial={{ 
+              x: pos.x * window.innerWidth,
+              y: pos.y * window.innerHeight 
             }}
             animate={{
-              x: [null, avoidCenter(Math.random() * window.innerWidth * 0.8, window.innerWidth)],
-              y: [null, avoidCenter(Math.random() * window.innerHeight * 0.8, window.innerHeight)],
+              x: [
+                pos.x * window.innerWidth,
+                ((pos.x + 0.2) % 0.8) * window.innerWidth
+              ],
+              y: [
+                pos.y * window.innerHeight,
+                ((pos.y + 0.2) % 0.8) * window.innerHeight
+              ]
             }}
             transition={{
-              duration: isMobile ? 10 + (i * 1.5) : 15 + (i * 2),
+              duration: isMobile ? 8 : 12,
               repeat: Infinity,
               repeatType: "reverse",
               ease: "linear",
               type: "tween",
               translateZ: 0,
-              willChange: "transform"
+              willChange: "transform",
+              // Reduce animation complexity
+              stiffness: isMobile ? 50 : 100,
+              damping: isMobile ? 10 : 20
             }}
           >
             <Button 
               onClick={button.onClick}
-              className={`${button.className} text-white p-3 rounded-full transform hover:scale-110 transition-all shadow-lg hover:shadow-xl`}
+              className={`${button.className} text-white p-3 rounded-full transform transition-transform duration-200 shadow-lg`}
             >
               {button.icon}
             </Button>
