@@ -11,42 +11,6 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const router = useRouter()
   const pathname = usePathname()
-  const [pendingScroll, setPendingScroll] = useState<string | null>(null)
-  const [isNavigating, setIsNavigating] = useState(false)
-
-  useEffect(() => {
-    // Reset navigation state when pathname changes
-    setIsNavigating(false)
-
-    // Only attempt to scroll if we were navigating and have a pending scroll target
-    if (!isNavigating && pendingScroll && pathname === '/') {
-      const timer = setTimeout(() => {
-        try {
-          const element = document.querySelector(pendingScroll)
-          if (element) {
-            // Force scroll to top first
-            window.scrollTo(0, 0)
-            
-            // Then scroll to element
-            const headerOffset = 80
-            const elementPosition = element.getBoundingClientRect().top
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset
-
-            window.scrollTo({
-              top: Math.max(0, offsetPosition),
-              behavior: 'smooth'
-            })
-          }
-        } catch (error) {
-          console.error('Scroll error:', error)
-        } finally {
-          setPendingScroll(null)
-        }
-      }, 100) // Short delay to ensure DOM is ready
-
-      return () => clearTimeout(timer)
-    }
-  }, [pathname, pendingScroll, isNavigating])
 
   const navItems = [
     { name: 'Home', href: '#home' },
@@ -75,15 +39,28 @@ export default function Navbar() {
     }
   }
 
+  useEffect(() => {
+    // Handle scrolling when pathname changes
+    if (pathname === '/') {
+      const hash = window.location.hash
+      if (hash) {
+        // Add a delay to ensure the page content is rendered
+        const timeoutId = setTimeout(() => {
+          scrollToElement(hash)
+        }, 500) // Increased timeout to ensure content is loaded
+        return () => clearTimeout(timeoutId)
+      }
+    }
+  }, [pathname])
+
   const handleNavigation = async (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
     setIsOpen(false)  // Close mobile menu
 
     if (href.startsWith('#')) {
       if (pathname !== '/') {
-        setIsNavigating(true)
-        setPendingScroll(href)
-        router.push('/')
+        // Navigate to home page with the hash
+        router.push(`/${href}`)
       } else {
         scrollToElement(href)
       }
