@@ -77,6 +77,13 @@ export default function VideoMessages() {
       videoUrl: '/Videos/samiwish.mp4',
       thumbnail: "/Thumbnail/thumb4.jpg"
     },
+    {
+      id: 9,
+      title: "From Raunak",
+      description: "Dada mi video send nahi krt",
+      videoUrl: null,
+      thumbnail: "/Thumbnail/thumb2.jpeg"
+    },
   ];
 
   if (isLoading) {
