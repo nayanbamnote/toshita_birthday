@@ -47,14 +47,14 @@ export default function VideoMessages() {
       title: "From Tanush Dada",
       description: "Follow the orders🫡",
       videoUrl: '/Videos/tanushwish.mp4',
-      thumbnail: "/Thumbnail/thumb3.jpeg"
+      thumbnail: "/Thumbnail/thumb33.jpg"
     },
     {
       id: 5,
       title: "From Kashish",
       description: "Syllabus pending, vibes still unbothered!😎",
       videoUrl: '/Videos/kashishwish.mp4',
-      thumbnail: "/placeholder.webp"
+      thumbnail: "/Thumbnail/thumblast.jpg"
     },
     {
       id: 6,

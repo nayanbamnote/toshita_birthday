@@ -33,7 +33,7 @@ export function ToshitaCard() {
         "Let's celebrate it together after our boards.",
       name: "Kashish",
       designation: null,
-      src: "/placeholder.webp",
+      src: "/Thumbnail/thumblast.jpg",
     },
     {
       id: 5,
