@@ -6,66 +6,66 @@ export function ToshitaCard() {
     {
       id: 1,
       quote:
-        "The attention to detail and innovative features have completely transformed our workflow. This is exactly what we've been looking for.",
+        "My sister’s mood swings are like server responses — sometimes 200 OK, sometimes 500 Internal Screaming Error! 😆",
       name: "Nayan",
-      designation: "Product Manager at TechFlow",
-      src: "/toshita.jpg",
+      designation: null,
+      src: "/Thumbnail/thumb1.jpeg",
     },
     {
       id: 2,
       quote:
-        "Implementation was seamless and the results exceeded our expectations. The platform's flexibility is remarkable.",
+        "Happy vadhdivas toshuuu✨🫶🏻 Ashich amhala navin navin shabd shikvat ja",
       name: "Tanush",
-      designation: "CTO at InnovateSphere",
-      src: "/toshita.jpg",
+      designation: null,
+      src: "/Thumbnail/thumb3.jpeg",
     },
     {
       id: 3,
       quote:
-        "This solution has significantly improved our team's productivity. The intuitive interface makes complex tasks simple.",
+        "You are such a cutiepie toshuu 😘",
       name: "Vidhi",
-      designation: "Operations Director at CloudScale",
-      src: "/toshita.jpg",
+      designation: null,
+      src: "/Thumbnail/thumb6.jpeg",
     },
     {
       id: 4,
       quote:
-        "Outstanding support and robust features. It's rare to find a product that delivers on all its promises.",
+        "Let's celebrate it together after our boards.",
       name: "Kashish",
-      designation: "Engineering Lead at DataPro",
-      src: "/toshita.jpg",
+      designation: null,
+      src: "/placeholder.webp",
     },
     {
       id: 5,
       quote:
-        "Outstanding support and robust features. It's rare to find a product that delivers on all its promises.",
+        "Wishing you an incredible birthday and a year of love and success And u are my bestfriend more than cousin 💗🫂",
       name: "Samidha",
-      designation: "Engineering Lead at DataPro",
-      src: "/toshita.jpg",
+      designation: null,
+      src: "/Thumbnail/thumb4.jpg",
     },
     {
       id: 6,
       quote:
-        "The scalability and performance have been game-changing for our organization. Highly recommend to any growing business.",
+        "ho dada tula thodya vedat send krto",
       name: "Ranuak",
-      designation: "VP of Technology at FutureNet",
-      src: "/toshita.jpg",
+      designation: null,
+      src: "/Thumbnail/thumb5.jpeg",
     },
     {
       id: 7,
       quote:
-        "The scalability and performance have been game-changing for our organization. Highly recommend to any growing business.",
+        "Best secret keeper Ani sis pn",
       name: "Vaidhahi",
-      designation: "VP of Technology at FutureNet",
-      src: "/toshita.jpg",
+      designation: null,
+      src: "/placeholder.webp",
     },
     {
       id: 8,
       quote:
-        "The scalability and performance have been game-changing for our organization. Highly recommend to any growing business.",
+        "happy birthday toshita tai mi sagdhyat pahile video send kela",
       name: "Mayank & Viaana",
-      designation: "VP of Technology at FutureNet",
-      src: "/toshita.jpg",
+      designation: null,
+      src: "/placeholder.webp",
     },
   ];
 

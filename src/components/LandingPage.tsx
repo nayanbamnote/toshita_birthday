@@ -130,7 +130,7 @@ export default function LandingPage() {
             className="text-lg sm:text-xl md:text-2xl text-white/90"
             variants={subtitleVariants}
           >
-            🌟 To the most amazing sister in the world!
+            🌟 To the world's most unpredictable sister — part-time angel, full-time chaos manager!
           </motion.div>
           
           <FloatingPartyButtons />

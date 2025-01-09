@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { Video } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useRouter, usePathname } from 'next/navigation'
+import Link from 'next/link'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -100,7 +101,7 @@ export default function Navbar() {
             {navItems
               .filter(item => item.isSpecial)
               .map(item => (
-                <a
+                <Link
                   key={item.name}
                   href={item.href}
                   onClick={(e) => handleNavigation(e, item.href)}
@@ -108,7 +109,7 @@ export default function Navbar() {
                 >
                   {item.icon && item.icon}
                   {item.name}
-                </a>
+                </Link>
               ))}
           </div>
 
@@ -118,14 +119,14 @@ export default function Navbar() {
               {navItems
                 .filter(item => !item.isSpecial)
                 .map((item) => (
-                <a
+                <Link
                   key={item.name}
                   href={item.href}
                   onClick={(e) => handleNavigation(e, item.href)}
                   className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300"
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -162,14 +163,14 @@ export default function Navbar() {
           {navItems
             .filter(item => !item.isSpecial)
             .map((item) => (
-            <a
+            <Link
               key={item.name}
               href={item.href}
               className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               onClick={(e) => handleNavigation(e, item.href)}
             >
               {item.name}
-            </a>
+            </Link>
           ))}
         </div>
       </motion.div>

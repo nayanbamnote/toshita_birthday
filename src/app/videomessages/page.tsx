@@ -26,21 +26,56 @@ export default function VideoMessages() {
       title: "From Nayan Dada",
       description: "A heartfelt message from your loving brother",
       videoUrl: "/Videos/nayanwish.mp4", 
-      thumbnail: "/mom-thumbnail.jpg"
+      thumbnail: "/Thumbnail/thumb1.jpeg"
     },
     {
       id: 2,
       title: "From Mayank & Viaana",
       description: "Sigma male showing his love",
       videoUrl: '/Videos/mayankwish.mp4',
-      thumbnail: "/dad-thumbnail.jpg"
+      thumbnail: "/placeholder.webp"
     },
     {
       id: 3,
       title: "Vidhi Didi",
       description: "Happy bir... but why landscape video?",
       videoUrl: '/Videos/vidhiwishes.mp4',
-      thumbnail: "/dad-thumbnail.jpg"
+      thumbnail: "/Thumbnail/thumb6.jpeg"
+    },
+    {
+      id: 4,
+      title: "From Tanush Dada",
+      description: "Follow the orders🫡",
+      videoUrl: '/Videos/tanushwish.mp4',
+      thumbnail: "/Thumbnail/thumb3.jpeg"
+    },
+    {
+      id: 5,
+      title: "From Kashish",
+      description: "Syllabus pending, vibes still unbothered!😎",
+      videoUrl: '/Videos/kashishwish.mp4',
+      thumbnail: "/placeholder.webp"
+    },
+    {
+      id: 6,
+      title: "From Balaji",
+      description: "Screaming: it's my normal voice! 😆",
+      videoUrl: '/Videos/balawish.mp4',
+      thumbnail: "/placeholder.webp"
+    },
+    {
+      id: 7,
+      title: "From Riddhi",
+      description: "Cuteness overload 🫠",
+      videoUrl: '/Videos/riddhiwish.mp4',
+      thumbnail: "/placeholder.webp"
+    },
+    {
+      id: 8,
+      title: "From Samidha",
+      description: "Actors must be taking notes! 😏",
+      videoUrl: '/Videos/samiwish.mp4',
+      thumbnail: "/Thumbnail/thumb4.jpg"
     },
   ];
 

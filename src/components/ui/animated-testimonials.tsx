@@ -9,7 +9,7 @@ type Toshitaimonial = {
   id: number;
   quote: string;
   name: string;
-  designation: string;
+  designation?: string | null;
   src: string;
 };
 export const AnimatedToshitaimonials = ({
@@ -117,9 +117,11 @@ export const AnimatedToshitaimonials = ({
             <h3 className="text-xl md:text-2xl font-bold dark:text-white text-black">
               {Toshitaimonials[active].name}
             </h3>
-            <p className="text-xs md:text-sm text-gray-500 dark:text-neutral-500">
-              {Toshitaimonials[active].designation}
-            </p>
+            {Boolean(Toshitaimonials[active].designation) && (
+              <p className="text-xs md:text-sm text-gray-500 dark:text-neutral-500">
+                {Toshitaimonials[active].designation}
+              </p>
+            )}
             <motion.p className="text-base md:text-lg text-gray-500 mt-4 md:mt-8 dark:text-neutral-300">
               {Toshitaimonials[active].quote.split(" ").map((word, index) => (
                 <motion.span
