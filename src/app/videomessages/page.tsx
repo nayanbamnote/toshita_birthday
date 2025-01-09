@@ -23,19 +23,25 @@ export default function VideoMessages() {
   const messages = [
     {
       id: 1,
-      title: "From Mom",
-      description: "A heartfelt message from your loving mother",
-      videoUrl: null, // Changed from empty string to null
+      title: "From Nayan Dada",
+      description: "A heartfelt message from your loving brother",
+      videoUrl: "/Videos/nayanwish.mp4", 
       thumbnail: "/mom-thumbnail.jpg"
     },
     {
       id: 2,
-      title: "From Dad",
-      description: "Words of wisdom and love from your father",
-      videoUrl: null, // Changed from empty string to null
+      title: "From Mayank & Viaana",
+      description: "Sigma male showing his love",
+      videoUrl: '/Videos/mayankwish.mp4',
       thumbnail: "/dad-thumbnail.jpg"
     },
-    // Add more video messages as needed
+    {
+      id: 3,
+      title: "Vidhi Didi",
+      description: "Happy bir... but why landscape video?",
+      videoUrl: '/Videos/vidhiwishes.mp4',
+      thumbnail: "/dad-thumbnail.jpg"
+    },
   ];
 
   if (isLoading) {

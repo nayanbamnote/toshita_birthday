@@ -49,7 +49,7 @@ export const ParallaxScroll = ({
                 className="rounded-lg"
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                style={{ objectFit: "cover", objectPosition: "center" }}
+                style={{ objectFit: "cover", objectPosition: "top" }}
                 alt="thumbnail"
                 priority={idx < 4}
               />
@@ -68,7 +68,7 @@ export const ParallaxScroll = ({
                 className="rounded-lg"
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                style={{ objectFit: "cover", objectPosition: "center" }}
+                style={{ objectFit: "cover", objectPosition: "top" }}
                 alt="thumbnail"
                 priority={idx < 4}
               />
@@ -87,7 +87,7 @@ export const ParallaxScroll = ({
                 className="rounded-lg"
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                style={{ objectFit: "cover", objectPosition: "center" }}
+                style={{ objectFit: "cover", objectPosition: "top" }}
                 alt="thumbnail"
                 priority={idx < 4}
               />

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Play, Pause } from "lucide-react";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 
 interface VideoMessageProps {
@@ -74,6 +74,9 @@ export function VideoMessage({ title, description, videoUrl, thumbnail }: VideoM
       {videoUrl && (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
           <DialogContent className="max-w-4xl bg-black/90 border-white/20">
+            <DialogTitle className="sr-only">
+              {title} Video Message
+            </DialogTitle>
             <div className="aspect-video relative">
               <video
                 className="w-full h-full rounded-lg"

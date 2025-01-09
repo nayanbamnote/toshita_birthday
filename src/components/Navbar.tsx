@@ -94,23 +94,36 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 w-full z-[9999] bg-black/20 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-end h-16">
-          {/* Desktop menu */}
-          <div className="hidden md:block">
-            <div className="flex items-baseline space-x-4">
-              {navItems.map((item) => (
+        <div className="flex items-center justify-between h-16">
+          {/* Special Messages - Always visible */}
+          <div className="flex items-center">
+            {navItems
+              .filter(item => item.isSpecial)
+              .map(item => (
                 <a
                   key={item.name}
                   href={item.href}
                   onClick={(e) => handleNavigation(e, item.href)}
-                  className={cn(
-                    "px-3 py-2 rounded-md text-sm font-medium transition-all duration-300",
-                    item.isSpecial 
-                      ? "bg-white/10 hover:bg-white/20 text-white flex items-center gap-2 hover:scale-105" 
-                      : "text-gray-300 hover:text-white"
-                  )}
+                  className="bg-white/10 hover:bg-white/20 text-white flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium hover:scale-105 transition-all duration-300"
                 >
                   {item.icon && item.icon}
+                  {item.name}
+                </a>
+              ))}
+          </div>
+
+          {/* Desktop menu */}
+          <div className="hidden md:block">
+            <div className="flex items-baseline space-x-4">
+              {navItems
+                .filter(item => !item.isSpecial)
+                .map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  onClick={(e) => handleNavigation(e, item.href)}
+                  className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300"
+                >
                   {item.name}
                 </a>
               ))}
@@ -138,7 +151,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu - without Special Messages */}
       <motion.div 
         className={`md:hidden ${isOpen ? 'block' : 'hidden'}`}
         initial={{ opacity: 0, y: -20 }}
@@ -146,7 +159,9 @@ export default function Navbar() {
         transition={{ duration: 0.2 }}
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black/30 backdrop-blur-sm">
-          {navItems.map((item) => (
+          {navItems
+            .filter(item => !item.isSpecial)
+            .map((item) => (
             <a
               key={item.name}
               href={item.href}
